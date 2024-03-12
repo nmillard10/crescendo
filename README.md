@@ -16,16 +16,16 @@ devtools::install_github("immunogenomics/crescendo")
 
 ## Quick-start code
 
-The following code uses Crescendo to correct gene expression in 3 slices of spatial transcriptomics data.
+The following code uses Crescendo to correct gene expression from a 10X dataset containing 3 batches (3pV1, 3pV2, and 5p)
 
 ``` r
 library(crescendo)
 
 # Load dataset with metadata, raw gene counts, and Harmony clusters (result from running the Harmony algorithm)
-obj <- readRDS(system.file("extdata", "Vizgen_Slice3_obj.rds", package = "crescendo"))
+obj <- readRDS(system.file("extdata", "pbmc_obj.rds", package = "crescendo"))
 
 # Set which genes to correct and parameters for coorrection (parameters explained in GettingStarted vignette)
-genes_use <- c('Gpr34', 'Rxfp1')
+genes_use <- c('TRAC', 'MS4A1')
 prop <- 0.05
 min_cells <- 50
 
