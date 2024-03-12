@@ -1,0 +1,77 @@
+---
+title: "Getting started with Crescendo"
+author: Nghia Millard
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with Crescendo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Installation
+
+You can install Crescendo from github with devtools
+```{r eval = FALSE}
+devtools::install_github(repo = "immunogenomics/crescendo")
+```
+
+```{r setup}
+library(crescendo)
+```
+
+# Load dataset with metadata, raw gene counts, and Harmony clusters (result from running the Harmony algorithm)
+
+
+
+```{r}
+genes_use <- c('Gpr34', 'Rxfp1')
+prop <- 0.05
+min_cells <- 50
+
+batch_col <- 'batch'
+id_col = 'CellID'
+constant_umi <- TRUE
+merge_clusters <- TRUE
+
+mc.cores <- NULL
+# mc.cores <- 1
+alpha <- 0
+lambda <- NULL
+```
+
+```{r}
+corr_counts <- crescendo(
+    Ycounts = obj$exprs_raw,
+    meta_data = obj$meta_data,
+    R = obj$R,
+    genes_use = genes_use,
+    prop = prop,
+    min_cells = min_cells,
+    batch_col = batch_col,
+    id_col = id_col,
+    constant_umi = TRUE,
+    merge_clusters = TRUE,
+    alpha = 0,
+    lambda = NULL,
+    seed = 2,
+    return_obj = FALSE,
+    mc.cores = mc.cores
+)
+```
+
+```{r}
+corr_counts %>% str(1)
+```
+
+# Session information
+
+```{r}
+sessionInfo()
+```
