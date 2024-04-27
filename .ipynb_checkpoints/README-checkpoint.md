@@ -16,46 +16,38 @@ devtools::install_github("immunogenomics/crescendo")
 
 ## Quick-start code
 
-The following code uses Crescendo to correct gene expression from a 10X dataset containing 3 batches (3pV1, 3pV2, and 5p)
+The following code uses Crescendo to correct gene expression from a public 10X dataset containing 3 batches (3pV1, 3pV2, and 5p)
 
 ``` r
 library(crescendo)
 
 # Load dataset with metadata, raw gene counts, and Harmony clusters (result from running the Harmony algorithm)
-obj <- readRDS(system.file("extdata", "pbmc_obj.rds", package = "crescendo"))
+obj <- readRDS(system.file("extdata", "pbmc_4gene_obj.rds", package = "crescendo"))
 
-# Set which genes to correct and parameters for coorrection (parameters explained in GettingStarted vignette)
+# Set which genes to correct and parameters for coorrection
+batch_var <- 'batch'
 genes_use <- c('TRAC', 'MS4A1')
 prop <- 0.05
 min_cells <- 50
 
-batch_col <- 'batch'
-id_col = 'CellID'
-constant_umi <- TRUE
-merge_clusters <- TRUE
-
 mc.cores <- NULL
-# mc.cores <- 1
-alpha <- 0
 lambda <- NULL
+alpha <- 0
 
 # Run Crescendo
 corr_counts <- crescendo(
     Ycounts = obj$exprs_raw,
     meta_data = obj$meta_data,
     R = obj$R,
+    batch_var = 'batch',
     genes_use = genes_use,
     prop = prop,
     min_cells = min_cells,
-    batch_col = batch_col,
-    id_col = id_col,
-    constant_umi = TRUE,
-    merge_clusters = TRUE,
-    alpha = 0,
-    lambda = NULL,
-    seed = 2,
+    lambda = lambda,
+    alpha = alpha,
+    mc.cores = mc.cores,
     return_obj = FALSE,
-    mc.cores = mc.cores
+    verbose = FALSE
+    # verbose = TRUE
 )
-corr_counts %>% str(1)
 ```

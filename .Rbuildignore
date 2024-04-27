@@ -1,5 +1,5 @@
 ^README\.Rmd$
- .ipynb_checkpoints
+.ipynb_checkpoints
 R/.ipynb_checkpoints
 man/.ipynb_checkpoints
 src/.ipynb_checkpoints
