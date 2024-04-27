@@ -9,7 +9,7 @@
 #' @param alpha Elastic net regularization parameter. 1 indicates lasso penalty, 0 indicates ridge penalty.
 #' @param genes_use Genes to estimate. If none supplied, will automatically estimate all genes in Ycounts.
 #' @param offset A vector containing the total nUMI for each cell.
-#' @param mc.cores Number of cores to use for sampling (useful for large datasets).
+#' @param mc.cores Number of cores to use for parallel functions.
 #' @return A dataframe containing parameter estimates for each gene.
 #' @export
 estimate_betas <- function(

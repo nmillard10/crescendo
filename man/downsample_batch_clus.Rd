@@ -6,28 +6,31 @@
 \usage{
 downsample_batch_clus(
   meta_data,
-  id_col = "CellID",
-  batch_col = "batch",
+  batch_var = "batch",
+  prop = 0.1,
+  min_cells = 50,
+  return_idx = TRUE,
   clus_col = "sampled_clus",
-  prop,
-  min_cells,
-  seed = NULL
+  seed = NULL,
+  mc.cores = NULL
 )
 }
 \arguments{
 \item{meta_data}{Metadata table that contains cell information (cell x info).}
 
-\item{id_col}{Name of column containing unique cell IDs.}
-
-\item{batch_col}{Name of column containing batch information (e.g. batch, dataset, technology).}
-
-\item{clus_col}{Name of column containing cluster information.}
+\item{batch_var}{Name of column containing batch information (e.g. batch, dataset, technology).}
 
 \item{prop}{Fraction of cells to downsample to (e.g. 0.5 means downsample to arouond 50\% of original cells, 0.25 means 25\%, etc.).}
 
 \item{min_cells}{Number of minimum cells to keep from each cell type in each batch.}
 
+\item{return_idx}{Return just the indices of the downsampled metadata, or return the metadata table.}
+
+\item{clus_col}{Name of column containing cluster information.}
+
 \item{seed}{Seed for RNG.}
+
+\item{mc.cores}{Number of cores to use for parallel functions.}
 }
 \value{
 A metadata table containing the downsampled cells.

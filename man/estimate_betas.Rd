@@ -30,7 +30,7 @@ estimate_betas(
 
 \item{offset}{A vector containing the total nUMI for each cell.}
 
-\item{mc.cores}{Number of cores to use for sampling (useful for large datasets).}
+\item{mc.cores}{Number of cores to use for parallel functions.}
 }
 \value{
 A dataframe containing parameter estimates for each gene.

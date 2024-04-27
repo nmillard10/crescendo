@@ -4,14 +4,14 @@
 \alias{sample_harmony_clus}
 \title{Sample a discrete harmony cluster based off of soft-cluster probabilities.}
 \usage{
-sample_harmony_clus(harmony_clusters, seed = NULL, mc.cores = NULL)
+sample_harmony_clus(R, seed = NULL, mc.cores = NULL)
 }
 \arguments{
-\item{harmony_clusters}{A matrix of harmony clusters (cluster x cell) that are received as output from the Harmony algorithm.}
+\item{R}{A matrix of harmony clusters (cluster x cell) that are received as output from the Harmony algorithm.}
 
 \item{seed}{Seed for RNG.}
 
-\item{mc.cores}{Number of cores to use for sampling (useful for large datasets).}
+\item{mc.cores}{Number of cores to use for parallel functions.}
 }
 \value{
 A vector containing a discrete cluster assignment for each cell design matrix that contains batch and cluster membership 

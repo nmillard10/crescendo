@@ -129,4 +129,3 @@ IntegerMatrix parallelicdfPoisson(
     parallelFor(0, k.length(), icdfpoisInstance);
     return output;
 }
-

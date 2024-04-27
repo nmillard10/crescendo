@@ -21,11 +21,11 @@ match_cdfs <- function(
         Ycounts <- Ycounts %>% data.matrix
     }
     
-    corrected_matching = parallelicdfPoisson(
+    corrected_matching = as(parallelicdfPoisson(
         Ycounts,
         expected_counts_full, 
         expected_counts_marginalized
-    )
+    ), 'dgCMatrix')
     
     colnames(corrected_matching) <- colnames(Ycounts)
     rownames(corrected_matching) <- rownames(Ycounts) 

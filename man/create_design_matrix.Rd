@@ -4,14 +4,12 @@
 \alias{create_design_matrix}
 \title{Create a design matrix.}
 \usage{
-create_design_matrix(meta_data, R, id_col = "CellID")
+create_design_matrix(meta_data, R)
 }
 \arguments{
 \item{meta_data}{Metadata table that contains cell information (cell x info).}
 
 \item{R}{A matrix containing cluster assignments for each cell (cluster x cell).}
-
-\item{id_col}{Name of column containing unique cell IDs.}
 }
 \value{
 A design matrix that contains batch and cluster membership information.

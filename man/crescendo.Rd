@@ -8,19 +8,17 @@ crescendo(
   Ycounts,
   meta_data,
   R,
+  batch_var = "batch",
   genes_use = NULL,
-  id_col = "CellID",
-  batch_col = "batch",
   prop = 1,
   min_cells = 50,
-  constant_umi = TRUE,
-  merge_clusters = TRUE,
   lambda = NULL,
   alpha = 0,
   seed = 2,
-  return_obj = FALSE,
   mc.cores = NULL,
-  impute_reads = NULL
+  impute_reads = NULL,
+  return_obj = FALSE,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -28,21 +26,15 @@ crescendo(
 
 \item{meta_data}{Metadata table that contains cell information (cell x info).}
 
-\item{R}{A matrix containing cluster assignments for each cell (cluster x cell).}
+\item{R}{A matrix of harmony clusters (cluster x cell) that are received as output from the Harmony algorithm.}
+
+\item{batch_var}{Name of column containing batch information (e.g. batch, dataset, technology).}
 
 \item{genes_use}{Genes to estimate. If none supplied, will automatically estimate all genes in Ycounts.}
-
-\item{id_col}{Name of column containing unique cell IDs.}
-
-\item{batch_col}{Name of column containing batch information (e.g. batch, dataset, technology).}
 
 \item{prop}{Fraction of cells to downsample to (e.g. 0.5 means downsample to arouond 50\% of original cells, 0.25 means 25\%, etc.).}
 
 \item{min_cells}{Number of minimum cells to keep from each cell type in each batch.}
-
-\item{constant_umi}{Determines whether to sample counts at a constant UMI level vs. variable (recommended to be constant).}
-
-\item{merge_clusters}{Determines whether to merge redundant Harmony clusters (merging decreases computational costs).}
 
 \item{lambda}{Regularization parameter.}
 
@@ -50,11 +42,13 @@ crescendo(
 
 \item{seed}{Seed for RNG.}
 
+\item{mc.cores}{Number of cores to use for parallel functions.}
+
+\item{impute_reads}{If not NULL, supplies a vector of UMI to perform imputation at the supplied read depths.}
+
 \item{return_obj}{Return only corrected counts, or results from each step.}
 
-\item{mc.cores}{Number of cores to use for sampling (useful for large datasets).}
-
-\item{impute_reads}{If not NULL, supply a vector of UMI to perform gene imputation in a higher UMI context than observed in the data.}
+\item{verbose}{Print out progress messages.}
 }
 \value{
 A dataframe containing corrected gene count expressions, or a list containing results from each Crescendo step.
